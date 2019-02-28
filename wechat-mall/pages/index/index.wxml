@@ -11,11 +11,10 @@
     <!--分类  -->
     <view class="sort_list">
       <block wx:for="{{sortArray}}" wx:key="unique">
-        <view id="{{index}}" class='sort_item' data-id="{{item.id}}"  catchtap='catchTopSort'>
+        <view id="{{index}}" class='sort_item' data-id="{{item.id}}"  catchtap='catchTapSort'>
           <image src='{{item.icon}}'></image>
           <text>{{item.name}}</text>
         </view>
-        
       </block>      
     </view>
     <!--专题  -->

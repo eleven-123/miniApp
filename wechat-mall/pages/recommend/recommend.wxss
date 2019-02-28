@@ -1,10 +1,10 @@
 /* pages/sort/sort.wxss */
 
 /*导航条  */
-.navbar{display:-webkit-flex;display:flex; background:#fff;}
-.navbar .item{flex:1 1 20%;line-height:80rpx;text-align: center;color: #888;font-size: 14px;position: relative;}
+.navbar{display:-webkit-flex;display:flex; background:#fff;padding: 0  10px;overflow-x: auto;}
+.navbar .item{flex:1;min-width:60px; line-height:80rpx;text-align: center;color: #888;font-size: 14px;position: relative;}
 .navbar .item.active{color: #29ADA0;}
-.navbar .item.active:after{content: "";display: block;position: absolute;bottom: 0;left: 0;right: 0;height: 2rpx;background: #29ADA0;}
+.navbar .item.active:after{content: "";display: block;position: absolute;bottom: 0;left: 50%;width:50rpx;height: 2px;margin-left:-25rpx;background: #29ADA0;}
 
 /*商品列表  */
 .goods_list{margin:10px 0;}
@@ -16,3 +16,5 @@
 .goods_price_sold{margin-top:10px;}
 .goods_price{color: #f60;margin-right: 10px;}
 .goods_sold{font-size: 12px;color: #a8a8a8;}
+
+.no_record{text-align: center;padding: 30px;font-size: 14px;color: #aaa;}

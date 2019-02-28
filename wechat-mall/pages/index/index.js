@@ -15,7 +15,7 @@ Page({
     sortArray:[]
   },
 
-  catchTopSort:function(e){
+  catchTapSort:function(e){
     wx.navigateTo({
       url: "/pages/recommend/recommend?id="+e.currentTarget.dataset.id,
     })
@@ -41,7 +41,11 @@ Page({
         var sortList=[]
         for (var i=0; i < res.data.data.length;i++){
           if(res.data.data[i].level==1){
-            sortList.push(res.data.data[i])
+            if(sortList.length<5){
+              sortList.push(res.data.data[i])
+            }else{
+              break
+            }
           }
         }
         that.setData({

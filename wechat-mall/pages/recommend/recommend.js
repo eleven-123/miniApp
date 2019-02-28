@@ -8,53 +8,64 @@ Page({
    */
   data: {
     navbar: [],
-
-    goodsList:[
-    ]
+    goodsList:[],
+    currentId:0
   },
 
   // 导航切换监听
   navbarTap: function (e) {
-    // console.log(e)
     this.setData({
-      currentTab: e.currentTarget.id
+      currentId: e.currentTarget.dataset.id
     })
-    // console.log(e.currentTarget.id)
-    this.getGoodsList(e.currentTarget.id)
+    this.getGoodsList(e.currentTarget.dataset.id)
   },
+  // 详情页
   toGoodsDetails:function(e){
-    // console.log(e)
     wx.navigateTo({
       url: "/pages/goods/goods?id=" + e.currentTarget.dataset.id
     })
   },
-  getGoodsList: function (cateId){
-    var that = this
-    console.log(cateId)
+  //获取navbar
+  getTopNavBar:function(){
+    var that = this;
     wx.request({
       url: app.apiRoutes.getCategory,
       header: app.apiHeader,
       success:function(res){
-        var list=res.data.data;
-        
-        console.log(list)
-        for(var i=0;i<=list.length;i++){
-          if(list[i].pid == cateId){            
-            console.log(list[i])
+        var sortList=[]
+        for (var i=0; i < res.data.data.length;i++){
+          if(res.data.data[i].level==1){
+            sortList.push(res.data.data[i])
           }
+        }
+        that.setData({
+          navbar: sortList
+        })
+      }
+    })
+  },
+  // 获取商品列表
+  getGoodsList: function (cateId){
+    var that = this;
+    wx.request({
+      url: app.apiRoutes.getGoodsList,
+      header: app.apiHeader,
+      data:{
+        categoryId:cateId,
+        recommendStatus:1
+      },
+      success:function(res){
+        if(res.data.data){
+          that.setData({
+            goodsList : res.data.data
+          })
+        }else{
+          that.setData({
+            goodsList : []
+          })
         }
       }
     })
-    // wx.request({
-    //   url: app.apiRoutes.getGoodsList,
-    //   header: app.apiHeader,
-    //   success:function(res){
-    //     console.log(res)
-    //     that.setData({
-    //       goodsList: res.data.data
-    //     })
-    //   }
-    // })
   },
 
   /**
@@ -62,26 +73,11 @@ Page({
    */
   onLoad: function (options) {
     var that=this
-    // that.setData({
-    //   currentTab: options.id
-    // })
+    that.setData({
+      currentId: options.id
+    })
     that.getGoodsList(options.id)
-    // wx.request({
-    //   url: app.apiRoutes.getGoodsList,
-    //   success: function (res) {
-    //     // console.log(res)
-    //     var sortList = []
-    //     for (var i = 0; i < res.data.data.length; i++) {
-    //       if (res.data.data[i].level == 1) {
-    //         sortList.push(res.data.data[i])
-    //       }
-    //     }
-    //     that.setData({
-    //       navbar: sortList
-    //     })
-    //     // console.log(sortList)
-    //   }
-    // })
+    that.getTopNavBar()
   },
   
 
