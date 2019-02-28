@@ -1,1 +1,11 @@
 /* pages/sort/sort.wxss */
+.category{overflow: hidden;height: 100%;width:100%;position: absolute;top: 0;left: 0;}
+.cate_tab{float:left;width: 90px;overflow-y: auto;height: 100%;background: #f3f4f6;}
+.cate_tab .item{height: 44px;line-height: 44px;padding: 0 15px;font-size: 14px;color: #333;border-bottom: 1px solid #e5e5e5;}
+.cate_tab .item.active{background: #fff;}
+.cate_content{float: right;width: calc(100% - 90px);height: 100%;overflow-y:auto;background: #fff;}
+.cate_cell .title{padding:10px 15px 15px;font-size: 14px;color: #333;}
+.list{display: -webkit-flex;display: flex;flex-wrap: wrap;padding: 0 15px;}
+.inner_cell{flex: 0 0 33.33%;text-align: center;margin-bottom: 20px;}
+.cell_img{ width: 50px; height: 50px; display: block; margin:0 auto; border-radius: 100%;border:1px solid #f3f4f6;}
+.cell_name{font-size: 12px;color: #666;}

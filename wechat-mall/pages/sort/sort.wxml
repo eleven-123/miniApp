@@ -1,2 +1,25 @@
 <!--pages/sort/sort.wxml-->
-<text>pages/sortAll/sort.wxml</text>
+<view class="category">
+    <!-- 左侧 -->
+    <view class="cate_tab">
+        <block wx:for="{{leftArray}}" wx:key="index">
+            <view class="item {{currId==item.id?'active':''}}">
+                <view data-id="{{item.id}}" data-name="{{item.name}}" bind:tap="bindCategoryTab">{{item.name}}</view>
+            </view>
+        </block>
+    </view>
+    <!-- 右侧 -->
+    <view class="cate_content">
+        <view class="cate_cell">
+            <view class="title">{{currCate}}</view>
+            <view class="list">
+                <block wx:for="{{rightArray}}"  wx:key="index">
+                    <view class="inner_cell">
+                        <image class="cell_img" src="{{item.icon}}" mode="aspectFill"/>
+                        <text class="cell_name">{{item.name}}</text>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+</view>
