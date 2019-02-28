@@ -1,0 +1,53 @@
+<!--index.wxml-->
+<view class="container">
+    <swiper indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorAactiveColor}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{true}}">
+        <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+            <swiper-item >
+                <image src="{{item.picUrl}}" class="slide_image" />
+            </swiper-item>
+        </block>
+    </swiper>
+    <!--分类  -->
+    <view class="sort_list">
+      <block wx:for="{{sortArray}}" wx:key="unique">
+        <view id="{{index}}" class='sort_item' data-id="{{item.id}}"  catchtap='catchTopSort'>
+          <image src='{{item.icon}}'></image>
+          <text>{{item.name}}</text>
+        </view>
+        
+      </block>      
+    </view>
+    <!--专题  -->
+    <view class="theme_wrap">
+      <navigator class='theme_img_wrap'>
+        <image src='/image/img_3.png' class='theme_img'></image>
+      </navigator>
+    </view>
+    <!--产品  -->
+    <view class='product_list'>
+      <view class='title_wrap'>
+        <text class='title_txt'>种植地</text>
+        <navigator class='more_link'>查看更多>></navigator>
+      </view>
+      <view class='list_wrap'>
+        <view class='item_wrap'>
+          <navigator>
+            <view class='item_img'>
+              <image src='/image/img_1.png'></image>
+            </view>
+            <view class='item_info'>梯田水稻</view>
+          </navigator>
+        </view>
+        <view class='item_wrap'>
+          <navigator>
+            <view class='item_img'>
+              <image src='/image/img_2.png'></image>
+            </view>
+            <view class='item_info'>高原玉米地</view>
+          </navigator>
+        </view>
+      </view>
+    </view>
+</view>
+

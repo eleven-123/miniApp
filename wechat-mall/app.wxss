@@ -1,0 +1,13 @@
+/**app.wxss**/
+ /* @import 'weui.wxss';  */
+
+
+
+page{
+  background: #f4f4f4;
+}
+.container {
+  height: 100%;
+  color: #333;
+  font-size:14px;
+} 

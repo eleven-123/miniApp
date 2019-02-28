@@ -1,0 +1,45 @@
+<!--pages/user/user.wxml-->
+<view class='container'>
+ 
+  <view class="userinfo">
+    <block wx:if="{{hasUserInfo === false}}">
+      <button bindtap="getUserInfo" open-type="getUserInfo">请点击登录</button>
+    </block>
+    <block wx:if="{{hasUserInfo === true}}">
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+
+  <view class='list_wrap'>
+    <view class='item_group'>
+      <view class='item_wrap'>
+        <navigator url='/pages/order/order'>
+          <image src='../../image/icons/icon_order.png' class='icon'></image>
+          <text>我的订单</text>
+        </navigator>      
+      </view>
+      <view class='item_wrap'>
+        <navigator url='/pages/address/address'>
+          <image src='../../image/icons/icon_coupon.png'></image>
+          <text>优惠券</text>
+        </navigator>      
+      </view>
+      <view class='item_wrap'>
+        <navigator url='/pages/address/address'>
+          <image src='../../image/icons/icon_address.png'></image>
+          <text>收货地址</text>
+        </navigator>      
+      </view>
+    </view>
+    <view class='item_group'>
+      <view class='item_wrap'>
+        <navigator url='/pages/service/service'>
+          <text>客服热线</text>
+          <image src='../../image/icons/icon_phone.png' class='icon_right'></image>
+        </navigator>      
+      </view>
+    </view>
+  </view>
+
+</view>
