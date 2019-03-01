@@ -12,14 +12,15 @@
     <view class="cate_content">
         <view class="cate_cell">
             <view class="title">{{currCate}}</view>
-            <view class="list">
+            <view class="list" wx:if="{{rightArray.length>=1}}">
                 <block wx:for="{{rightArray}}"  wx:key="index">
-                    <view class="inner_cell">
+                    <view class="inner_cell" bind:tap="toGoodList" data-id="{{item.id}}">
                         <image class="cell_img" src="{{item.icon}}" mode="aspectFill"/>
                         <text class="cell_name">{{item.name}}</text>
                     </view>
                 </block>
             </view>
+            <view wx:else class="no_record">暂无数据</view>
         </view>
     </view>
 </view>

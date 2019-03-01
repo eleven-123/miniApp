@@ -22,7 +22,7 @@ Page({
   // 详情页
   toGoodsDetails:function(e){
     wx.navigateTo({
-      url: "/pages/goods/goods?id=" + e.currentTarget.dataset.id
+      url: "/pages/goodsDetail/goodsDetail?id=" + e.currentTarget.dataset.id
     })
   },
   //获取navbar

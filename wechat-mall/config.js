@@ -20,7 +20,9 @@ var apiRoutes = {
     //获取商品分类
     getCategory:API_URL+'/shop/goods/category/all',
     //获取商品列表
-    getGoodsList:API_URL+'/shop/goods/list'
+    getGoodsList:API_URL+'/shop/goods/list',
+    //获取商品详情
+    getGoodsDetail:API_URL+'/shop/goods/detail'
 }
 module.exports = {
     siteConfig:siteConfig,

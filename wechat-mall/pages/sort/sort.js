@@ -67,6 +67,13 @@ Page({
     })
     self.getSubCategory(self.data.currId)
   },
+  //前往商品列表
+  toGoodList:function(e){
+    var id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: "/pages/goods/goods?id=" + id
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
