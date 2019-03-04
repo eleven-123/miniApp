@@ -22,7 +22,11 @@ var apiRoutes = {
     //获取商品列表
     getGoodsList:API_URL+'/shop/goods/list',
     //获取商品详情
-    getGoodsDetail:API_URL+'/shop/goods/detail'
+    getGoodsDetail:API_URL+'/shop/goods/detail',
+    //获取文章列表
+    getArticles:API_URL+'/cms/news/list',
+    //获取文章详情
+    getArticleDetail:API_URL+'/cms/news/detail',
 }
 module.exports = {
     siteConfig:siteConfig,

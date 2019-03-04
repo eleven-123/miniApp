@@ -1,0 +1,10 @@
+@import "../../wxParse/wxParse";
+
+.container{background: #fff;}
+.title_wrap{padding: 10px 15px;font-size: 18px;color: #333;}
+.title_wrap .date{font-size: 13px;color: #999;}
+.detail_wrap{padding: 5px 15px;}
+
+
+.wxParse-p{overflow: hidden;}
+

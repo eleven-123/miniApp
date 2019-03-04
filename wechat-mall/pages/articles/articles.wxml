@@ -1,0 +1,18 @@
+<!--pages/goods/goods.wxml-->
+
+<view class='container'>
+  <view class='list_wrap' wx:if="{{articles.length>=1}}">
+    <block wx:for="{{articles}}" wx:key="index">
+      <view class='item_wrap' data-id="{{item.id}}" bindtap="bindToDetails">
+        <view class='img_box'>
+          <image src="{{item.pic}}"></image>
+        </view>
+        <view class='info_box'>
+          <view class='name'>{{item.title}}</view>
+          <view class='date'>{{item.dateAdd}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view wx:else class="no_record">暂无数据</view>
+</view>

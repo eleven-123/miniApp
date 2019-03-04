@@ -12,7 +12,8 @@ Page({
     interval: 5000,
     duration: 300,
     
-    sortArray:[]
+    sortArray:[],
+    articles:[]
   },
 
   catchTapSort:function(e){
@@ -20,11 +21,37 @@ Page({
       url: "/pages/recommend/recommend?id="+e.currentTarget.dataset.id,
     })
   },
+  //文章管理
+  getArticles:function(){
+    var self =this;
+    wx.request({
+      url:app.apiRoutes.getArticles,
+      header:app.apiHeader,
+      method: 'POST',
+      data:{
+        isRecommend:true
+      },
+      success:function(res){
+        var data = res.data.data;
+        var list = [];
+        data.forEach(function(item,index){
+          if(index<2){
+            list.push(item)
+          }
+        });
+        self.setData({
+          articles:list
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
+    var that = this;
+    // banner
     wx.request({
       url: app.apiRoutes.getBanner,
       header: app.apiHeader,
@@ -34,6 +61,7 @@ Page({
         })
       }
     })
+    //分类
     wx.request({
       url: app.apiRoutes.getCategory,
       header: app.apiHeader,
@@ -52,7 +80,8 @@ Page({
           sortArray: sortList
         })
       }
-    })
+    }),
+    that.getArticles()
   },
 
   /**

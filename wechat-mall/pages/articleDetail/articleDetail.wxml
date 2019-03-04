@@ -1,0 +1,11 @@
+<import src="../../wxParse/wxParse.wxml"/>
+
+<view class='container'>
+  <view class='title_wrap'>
+    <view>{{detail.title}}</view>
+    <text class="date">{{detail.dateAdd}}</text>
+  </view>
+  <view class='detail_wrap'> 
+    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+  </view>
+</view>

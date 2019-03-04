@@ -17,35 +17,29 @@
         </view>
       </block>      
     </view>
-    <!--专题  -->
+    <!-- ad -->
     <view class="theme_wrap">
-      <navigator class='theme_img_wrap'>
+      <view class='theme_img_wrap'>
         <image src='/image/img_3.png' class='theme_img'></image>
-      </navigator>
+      </view>
     </view>
-    <!--产品  -->
-    <view class='product_list'>
+    <!-- 文章 -->
+    <view class='article_list'>
       <view class='title_wrap'>
         <text class='title_txt'>种植地</text>
-        <navigator class='more_link'>查看更多>></navigator>
+        <navigator url="/pages/articles/articles" class='more_link'>查看更多>></navigator>
       </view>
       <view class='list_wrap'>
-        <view class='item_wrap'>
-          <navigator>
-            <view class='item_img'>
-              <image src='/image/img_1.png'></image>
-            </view>
-            <view class='item_info'>梯田水稻</view>
-          </navigator>
-        </view>
-        <view class='item_wrap'>
-          <navigator>
-            <view class='item_img'>
-              <image src='/image/img_2.png'></image>
-            </view>
-            <view class='item_info'>高原玉米地</view>
-          </navigator>
-        </view>
+        <block wx:for="{{articles}}" wx:key="{{index}}">
+          <view class='item_wrap'>
+            <navigator url="/pages/articleDetail/articleDetail?id={{item.id}}">
+              <view class='item_img'>
+                <image src='{{item.pic}}'></image>
+              </view>
+              <view class='item_info'>{{item.title}}</view>
+            </navigator>
+          </view>
+        </block>
       </view>
     </view>
 </view>
