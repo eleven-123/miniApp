@@ -40,10 +40,11 @@
 .dialog_container {position: fixed;bottom: 0;width: 750rpx;background: white;transform: translateY(150%);transition: all 0.4s ease;z-index: 11;}
 .dialog_show .dialog_container {transform: translateY(0);}
 .dialog_show .dialog_mask {display: block;}
-.row {display: flex;flex-direction: row;align-items: center;padding:0 15px;}
-.column {display: flex;flex-direction: column;}
+.row {display: flex;flex-direction: row;align-items: center;padding:0 15px;position: relative;overflow: initial;}
+.column {flex:1;display: flex;flex-direction: column;overflow: hidden;}
 
-.sku_image{width: 170rpx;height:170rpx;z-index: 12;position: absolute;left: 15px;top: -20px;border-radius:5px;border: 1px solid #dedede;}
+
+.sku_image{flex:0 0 auto; width: 150rpx;height:150rpx;z-index: 12;border-radius:5px;border: 1px solid #dedede;position: absolute;top:8px;}
 .image-close {width: 40rpx;height: 40rpx;line-height:36rpx;text-align:center;border-radius: 50%; border:1px solid #67666f;color: #67666f;position: absolute;right: 26rpx;top: 15rpx;font-size:38rpx;}
 .sku_title{position: relative;left:200rpx;width:400rpx;margin: 10rpx 0;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .sku_price{color: red;position: relative;left: 200rpx;margin-bottom:5px ;}

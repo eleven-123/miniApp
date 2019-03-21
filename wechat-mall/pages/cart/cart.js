@@ -5,23 +5,109 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isSelect:false,
+    isAllchecked:true,
+    cart:[]
   },
 
-  //勾选事件处理函数 
+  //全选、非全选
+  allSelect:function(e){
+    var that = this;
+    var cart=that.data.cart;
+    var checked=!that.data.isAllchecked;
+    cart.map((item,index)=>{
+      item.isChecked=checked
+    })
+    that.setData({
+      isAllchecked: checked,
+      cart:cart
+    })
+    that.getTotal()
+  },
+  //勾选事件
   switchSelect:function(e){
     var that = this;
-    that.setData({
-      isSelect: !that.data.isSelect
+    var id = e.currentTarget.dataset.id;
+    var cart=that.data.cart;
+    cart.map((item,index)=>{
+      if(item.id==id){
+        item.isChecked=!item.isChecked
+      }
     })
-    
+    that.setData({
+      cart:cart
+    })
+    that.isAllChecked()
+    that.getTotal()
+  },
+  // 判断是否全选
+  isAllChecked:function(){
+    var that = this;
+    var cart=that.data.cart;
+    var len = cart.length;
+    var lenCount=0;
+    cart.map((item,index)=>{
+      item.isChecked?lenCount++:lenCount
+    })
+    var checked=len==lenCount?true:false;
+    that.setData({
+      isAllchecked: checked,
+    })
+  },
+  // 总计
+  getTotal:function () {
+    var that = this;
+    var cart=that.data.cart;
+    var buyList=[];
+    var total=0,count=0;
+    cart.map((item,index)=>{
+      item.isChecked?buyList.push(item):buyList;
+    })
+    buyList.map((item,index)=>{
+      total+=item.num*item.price
+      count+=item.num
+    })
+    that.setData({
+      totalSum:total.toFixed(2),
+      totalCount:count
+    })
+  },
+
+  // 商品数量-减
+  goodsReduce:function(e){
+    var id=e.currentTarget.dataset.id;
+    var cart = this.data.cart;
+    cart.map((item,index)=>{
+      if(item.id===id){
+        item.num-=1;
+      }
+    })
+    this.setData({
+      cart:cart
+    })
+    wx.setStorageSync('cart',cart)
+    this.getTotal()
+  },
+  // 商品数量-加
+  goodsAdd:function(e){
+    var id=e.currentTarget.dataset.id;
+    var cart = this.data.cart;
+    cart.map((item,index)=>{
+      if(item.id===id){
+        item.num+=1;
+      }
+    })
+    this.setData({
+      cart:cart
+    })
+    wx.setStorageSync('cart',cart)
+    this.getTotal()
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    
   },
 
   /**
@@ -35,7 +121,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var cart = wx.getStorageSync('cart') || [];
+    console.log(cart)
+    this.setData({
+      cart:cart
+    })
+    this.isAllChecked()
+    this.getTotal()
   },
 
   /**

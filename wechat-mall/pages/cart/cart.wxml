@@ -1,27 +1,42 @@
 <!--pages/cart/cart.wxml-->
 
 <view class='container'>
-  <view class='cart_top'>
-    <text class='title'>购物车</text>
-    <button class='edit_btn' size='mini' plain="true">编辑</button>
-  </view>
-
-  <scroll-view class="cart_list" scroll-y="true">
-    <view class="goods_item " >
-      <view class="item_select {{isSelect?'select':''}}" bindtap="switchSelect" >
-        <image src='../../image/icons/icon_checked.png'></image>
+  <view wx:if="{{cart.length>0}}">
+    <view class='cart_top'>
+      <view class="select_btn" bindtap="allSelect" >
+        <view class="item_select {{isAllchecked?'select':''}}">
+          <image src='../../image/icons/icon_checked.png'></image>
+        </view>
+        全选
       </view>
-      <image class='goods_img' src='../../image/goods_img_1.jpg'></image>
-      <view class='goods_msg'>
-        <view class='goods_name'>晚稻梯田象牙米 扶贫项目大米农家自种传统加工</view>
-        <view class='goods_price'>价格 ￥30.00</view>
-      </view>
-      <view class="quantity_wrap">
-        <text class="item_reduce item_btn" bindtap="{{goodsNum>1?'goodReduce':''}}">-</text>
-        <text class="item_num" >1</text>
-        <text class="item_add item_btn" bindtap="{{goodsNum<goods.goodsStock?'goodAdd':''}}">+</text>
-      </view>
+      <button class='edit_btn' size='mini' plain="true">编辑</button>
     </view>
-  </scroll-view>
-
+    <scroll-view class="cart_list" scroll-y="true">
+      <block wx:for="{{cart}}" wx:key="{{item.id}}">
+        <view class="goods_item " >
+          <view class="item_select {{item.isChecked?'select':''}}" data-id="{{item.id}}" bindtap="switchSelect" >
+            <image src='../../image/icons/icon_checked.png'></image>
+          </view>
+          <image class='goods_img' src="{{item.pic}}"></image>
+          <view class='goods_msg'>
+            <view class='goods_name'>{{item.name}}</view>
+            <view class='goods_price'>￥{{item.price}}</view>
+          </view>
+          <view class="quantity_wrap">
+            <text class="item_reduce item_btn" data-id="{{item.id}}" bindtap="{{item.num>1?'goodsReduce':''}}">-</text>
+            <text class="item_num" >{{item.num}}</text>
+            <text class="item_add item_btn" data-id="{{item.id}}" bindtap="{{item.num<item.stock?'goodsAdd':''}}">+</text>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+    <view class='cart_bottom'>
+      <view class="total" >总计：<text>￥{{totalSum}}</text><text class="other">（共 <text>{{totalCount}}</text> 件商品）</text></view>
+      <button class='buy_btn' plain="true">立即下单</button>
+    </view>
+  </view>
+  <view wx:else class="no_record">
+    <text>暂无数据</text>
+    <navigator class="btn" open-type="switchTab" url="/pages/index/index">快去抢购</navigator>
+  </view>
 </view>

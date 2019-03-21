@@ -50,6 +50,7 @@ Page({
   //选择数量
   goodAdd:function(e){
     var that = this;
+    console.log(that.data)
     var goodCount = that.data.goodsNum + 1;
     that.setData({//商品数量+1
       goodsNum: goodCount
@@ -66,42 +67,72 @@ Page({
   /**
  * 加入购物车
  */
-  addCart: function (data) {
+  addCart: function () {
     var that = this;
     var thatData = that.data;
-    var goods_id = thatData.goods.goodsId; //good_id  商品id
-    var goods_name = thatData.goods.goodsName; //good_name 商品名称
-    var goods_price = thatData.goods.goodsPrice; //goods_price  价格
-    var goods_num = thatData.goodsNum; //goods_num  商品数量
-    
     var obj={
-      id:goods_id,
-      name:goods_name,
-      price:goods_price,
-      num:goods_num
+      id:thatData.basicInfo.id, //商品id
+      name:thatData.basicInfo.name, //商品名称
+      price:thatData.basicInfo.originalPrice, //价格
+      num:thatData.goodsNum, //商品数量    
+      pic:thatData.basicInfo.pic, //商品图片
+      stock:thatData.basicInfo.stores, //商品库存
+      isChecked:true //商品选中状态
+    } 
+    // 缓存数组
+    var arr = wx.getStorageSync('cart') || [];
+    if (arr.length > 0) {
+      for (var i in arr) {
+        if (arr[i].id == obj.id) {
+          arr[i].num += obj.num;
+          try{
+            wx.setStorageSync('cart',arr)
+          }catch(e){
+            console.log(e)
+          }
+          wx.showToast({
+            title: '添加成功！',
+            duration: 2000,
+          })
+      
+          that.setData({
+            showDialog: false
+          })
+          return;          
+        }
+      }
+      arr.push(obj)
+    }else{
+      arr.push(obj)
     }
-    console.log(obj);
-    wx.setStorage(obj)
-
-    that.setData({
-      showDialog: false
-    })
-    wx.showToast({
-      title: '添加成功！',
-      duration: 2000,
-    })
+    try{
+      wx.setStorageSync('cart',arr)
+      wx.showToast({
+        title: '添加成功！',
+        duration: 2000,
+      })  
+      that.setData({
+        showDialog: false
+      })
+      return;
+    }catch(e){
+      console.log(e)
+    }
+    
   },
   //立即购买
-  saveOrder: function (data) {
-    var goods_id = thatData.good.goodsId; //good_id  商品id
-    var goods_name = thatData.good.goodsName; //good_name 商品名称
-    var goods_price = thatData.goods.goodsPrice; //goods_price  价格
-    var goods_num = thatData.goodsNum; //goods_num  商品数量
-
-    console.log(goods_id, goods_name, goods_price, goods_num);
-
-    var that = this;
+  saveOrder: function () {
+    var that=this;
     var thatData = that.data;
+    var obj={
+      id:thatData.basicInfo.id, //商品id
+      name:thatData.basicInfo.name, //商品名称
+      price:thatData.basicInfo.originalPrice, //价格
+      num:thatData.goodsNum, //商品数量    
+      pic:thatData.basicInfo.pic, //商品图片
+      stock:thatData.basicInfo.stores //商品库存
+    }
+    console.log(obj);
 
     that.setData({
       showDialog: false
