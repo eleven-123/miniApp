@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isAllchecked:true,
+    isAllchecked:true,  //全选状态
+    isEditStatus:false, //编辑状态
     cart:[]
   },
 
@@ -101,6 +102,47 @@ Page({
     })
     wx.setStorageSync('cart',cart)
     this.getTotal()
+  },
+  // 编辑
+  editCart:function(){
+    var cart = this.data.cart;
+    cart.map((item,index)=>{
+      item.isChecked=false
+    })
+    this.setData({
+      cart:cart,
+      isEditStatus:true,
+    })
+    this.isAllChecked()
+  },
+  // 完成编辑
+  editComplete:function(){
+    this.setData({
+      isEditStatus:false,  
+    })
+    var cart = this.data.cart;
+    cart.map((item,index)=>{
+      item.isChecked=true
+    })
+    this.setData({
+      cart:cart
+    })    
+    wx.setStorageSync('cart',cart)
+    this.isAllChecked()
+    this.getTotal()
+  },
+  // 删除商品
+  deleteCart:function(){    
+    var cart = this.data.cart;
+    var newCart=[];
+    cart.map((item,index)=>{
+      if(!item.isChecked){
+        newCart.push(item)
+      }
+    })
+    this.setData({
+      cart:newCart
+    })
   },
 
   /**

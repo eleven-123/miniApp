@@ -9,7 +9,8 @@
         </view>
         全选
       </view>
-      <button class='edit_btn' size='mini' plain="true">编辑</button>
+      <button class='edit_btn' size='mini' plain="true" tap>编辑</button>
+      <view class="edit_btn {{isEditStatus?'disable':''}}" bindtap="editCart">编辑</view>
     </view>
     <scroll-view class="cart_list" scroll-y="true">
       <block wx:for="{{cart}}" wx:key="{{item.id}}">
@@ -30,9 +31,13 @@
         </view>
       </block>
     </scroll-view>
-    <view class='cart_bottom'>
+    <view class='cart_bottom' wx:if="{{!isEditStatus}}">
       <view class="total" >总计：<text>￥{{totalSum}}</text><text class="other">（共 <text>{{totalCount}}</text> 件商品）</text></view>
-      <button class='buy_btn' plain="true">立即下单</button>
+      <view class='btn buy_btn' bindtap="createOrder">立即下单</view>
+    </view>
+    <view class='cart_bottom edit_btns' wx:else>
+      <view class='btn edit_delete' bindtap="deleteCart">删除</view>
+      <view class='btn edit_complete' bindtap="editComplete">完成</view>
     </view>
   </view>
   <view wx:else class="no_record">

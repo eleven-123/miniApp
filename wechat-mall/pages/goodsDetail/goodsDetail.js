@@ -124,15 +124,21 @@ Page({
   saveOrder: function () {
     var that=this;
     var thatData = that.data;
+    var list = [];
     var obj={
       id:thatData.basicInfo.id, //商品id
       name:thatData.basicInfo.name, //商品名称
-      price:thatData.basicInfo.originalPrice, //价格
+      price:thatData.basicInfo.originalPrice.toFixed(2), //价格
       num:thatData.goodsNum, //商品数量    
       pic:thatData.basicInfo.pic, //商品图片
       stock:thatData.basicInfo.stores //商品库存
     }
     console.log(obj);
+    list.push(obj)
+    wx.setStorageSync('orderCreate',list)
+    wx.navigateTo({
+      url:'/pages/orderCreate/orderCreate'
+    })
 
     that.setData({
       showDialog: false

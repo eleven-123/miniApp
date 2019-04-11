@@ -1,0 +1,31 @@
+<view class='container'>
+    <view class="address_view">
+        <view class="selected_address" wx:if="{{defaultAddr}}">
+            <text class="name">王小二</text>
+            <text class="tel">13512312312</text>
+            <text class="address">广东省广州市天河区新塘街道圆通驿站</text>
+        </view>
+        <view class="no_address" wx:else>请选择收货地址</view>
+    </view>
+    <view class="goods_view">
+        <view class="view_title">商品列表</view>
+        <block wx:for="{{goods}}" wx:key="index">
+            <view class="item_view">
+                <view class="item_img">
+                    <image src="{{item.pic}}" mode="aspectFit"/>
+                </view>
+                <view class="item_info">
+                    <text class="title">{{item.name}}</text>
+                    <view class="price_num">
+                        <text class="price">￥{{item.price}}</text>
+                        <text class="num">x{{item.num}}</text>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class="fixed_bottom">
+        <view class="total" ><text class="other">共{{goods.length}}件商品，</text>合计: <text class="amount">￥30.00</text></view>
+        <view class='btn' bindtap="confirmOrder">提交订单</view>
+    </view>
+</view>

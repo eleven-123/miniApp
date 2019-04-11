@@ -27,6 +27,10 @@ var apiRoutes = {
     getArticles:API_URL+'/cms/news/list',
     //获取文章详情
     getArticleDetail:API_URL+'/cms/news/detail',
+    //创建订单
+    orderCreate:API_URL+'/order/create',
+    // 获取订单
+    getOrders:API_URL+'/order/list'
 }
 module.exports = {
     siteConfig:siteConfig,

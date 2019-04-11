@@ -1,0 +1,38 @@
+.address_view{min-height:42px;margin:10px;padding:10px 15px;background: #fff;border-radius: 6px;}
+.no_address{line-height:42px;font-size: 16px;text-align: center;color: #999;}
+.selected_address{display: -webkit-flex;display: flex;flex-wrap: wrap;line-height: 20px;}
+.selected_address .name{margin-right: 20px;font-size: 16px;color: #333;}
+.selected_address .tel{color: #666;font-size: 14px;}
+.selected_address .address{flex:0 0 100%;margin-top:2px;font-size:13px;color: #999;}
+
+.goods_view{margin:10px;padding:10px 15px 0;margin-bottom:104rpx;background: #fff;border-radius: 6px}
+.view_title{line-height: 20px;margin:0 -15px 10px;padding:0 15px 10px;border-bottom:1px solid #eee;font-size: 14px;color: #666;}
+.item_view{display: -webkit-flex;display: flex;padding-bottom: 10px;}
+.item_img{flex:0 0 auto;width:50px;height:50px;margin-right:10px;border:1px solid rgba(0,0,0,.1);display: -webkit-flex;display: flex;align-items: center;justify-content: center;border-radius: 2px;padding:2px;}
+.item_img image{max-width: 100%;max-height: 100%;}
+.item_info{flex:1;display: -webkit-flex;display: flex;align-items: flex-start;}
+.item_info .title{flex:0 0 70%;font-size: 14px;color: #333;line-height: 20px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp:2;overflow: hidden;}
+.item_info .price_num{flex:1;display: -webkit-flex;display: flex;flex-direction: column;text-align: right;line-height: 20px;}
+.item_info .price{font-size: 14px;}
+.item_info .num{font-size: 12px;color: #999;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fixed_bottom{display: -webkit-flex;display: flex;justify-content: flex-end; height:84rpx;line-height:84rpx;background: #fff;position: fixed;bottom: 0;left: 0;width: 100%;z-index:10;border-top: 1px solid #eee;}
+.fixed_bottom .total{padding-left:15px;font-size: 14px;color: #666;}
+.fixed_bottom .total .other{font-size:12px;color: #999;}
+.fixed_bottom .total .amount{color: #ff7223;font-size: 14px;}
+.fixed_bottom .btn{margin-left:10px;padding:0 15px;color: #fff; font-size: 14px;background: #ff7223;}
